@@ -112,6 +112,7 @@ func Apply(update io.Reader, opts Options) error {
 		return err
 	}
 	defer fp.Close()
+	os.Chmod(newPath, opts.TargetMode)
 
 	_, err = io.Copy(fp, bytes.NewReader(newBytes))
 	if err != nil {
